@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chan Yien Kuol – Student Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header, nav, section, footer {
+      max-width: 800px;
+      margin: auto;
+      padding: 1rem;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+    }
+    nav {
+      background: #34495e;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      background: white;
+      margin-top: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 1rem auto;
+      border: 3px solid #3498db;
+    }
+    form label {
+      display: block;
+      margin-top: 1rem;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    h3 {
+      margin-top: 1.5rem;
+      color: #2c3e50;
+    }
+    ul {
+      padding-left: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    ul li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Chan Yien Kuol</h1>
+    <p>Student | Learner | Future Leader</p>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="home">
+    <h2>Welcome</h2>
+    <p>This is the personal portal of Chan Yien Kuol, a student passionate about learning, growth, and making a difference.</p>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <img src="chan.png" alt="Chan Yien Kuol" class="profile-image" />
+    <p>I am a dedicated student with a strong interest in education, leadership, and community development. My goal is to connect with mentors, institutions, and programs that support youth empowerment and academic excellence.</p>
+
+    <h3>Skills & Certifications</h3>
+    <ul>
+      <li>Google Data Analytics Professional Certificate</li>
+      <li>Project Management Professional Certificate</li>
+      <li>JavaScript and Node.js Development</li>
+    </ul>
+
+    <h3>Work Experience</h3>
+    <ul>
+      <li><strong>MSF Holland</strong> – Incentive Worker (Weight, Height, MUAC assessments)</li>
+      <li><strong>Concern Worldwide</strong> – Translator</li>
+    </ul>
+
+    <h3>Education</h3>
+    <ul>
+      <li>Diploma in Information Technology – Makland Institute of Business and Management</li>
+      <li>Third Year Student – Computer Science and Information Technology, Kampala University</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contact-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required />
+
+      <label for="message">Message</label>
+      <textarea id="message" rows="5" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 Chan Yien Kuol. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      const res = await fetch('http://localhost:3000/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      const result = await res.json();
+      alert(result.message || 'Message sent!');
+    });
+  </script>
+
+</body>
+</html>
